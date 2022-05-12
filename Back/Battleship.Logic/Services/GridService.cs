@@ -8,12 +8,18 @@ namespace Battleship.Logic.Services
 {
     public class GridService
     {
-        Grid gridInstance { get; set; }
+        public Grid gridInstance { get; set; }
+
         public GridService(Grid g) 
         {
             gridInstance = g;
         }
         
+        public Grid CreateNewGrid(int dim)
+        {
+            return null;
+        }
+
         public bool PlaceShip(List<List<Cell>> cellList, Ship ship, int x, int y) 
         {
             var (succeed, errorStatus) = CheckShipRequirements(ref cellList, ref ship, ref x, ref y);

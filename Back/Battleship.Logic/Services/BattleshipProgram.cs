@@ -18,7 +18,7 @@ namespace Battleship.Logic.Services
         public void Run()
         {
             _communicator.Write(StaticStrings.WelcomeMessage);
-            //_communicator.Write(StaticStrings.ChoseFirstPlayerMessage);
+            _communicator.Write(StaticStrings.ChoseFirstPlayerMessage);
             var players = _playerPicker.ChoosePlayer();
         }
     }

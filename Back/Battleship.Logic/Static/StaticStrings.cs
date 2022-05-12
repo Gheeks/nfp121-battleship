@@ -4,7 +4,8 @@
     {
         public static string WelcomeMessage = "Welcome to Battleship";
         public static string ChosePlayerMessage = "Please insert player name";
-        public static string ChoseSecondPlayerMessage = "Please insert first player infos";
+        public static string ChoseFirstPlayerMessage = "Please first player name";
+        public static string ChoseSecondPlayerMessage = "Please insert second player name";
         public static string Description = "Descritipn";
     }
 }

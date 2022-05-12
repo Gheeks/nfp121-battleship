@@ -20,25 +20,30 @@ namespace Battleship.Logic.Tests.Interfaces
         public BattleshipProgramTester()
         {
             _commMock = new Mock<ICommunicator>();
-            //_program = new BattleshipProgram(_commMock.Object, _playerMock.Object, _gameCore.Object);
         }
 
         [TestMethod]
         public void Runs_ThenCommunicatorIsCalled()
         {
+            _communicator = new Communicator();
+            _program = new BattleshipProgram(_communicator, new PlayerPicker());
             _program.Run();
             _commMock.Verify(x => x.Write(It.IsAny<string>()), Times.Once);
         }
         [TestMethod]
         public void Runs_ThenCommunicatorIsCalledWithWelcomeMessage()
         {
+            _program = new BattleshipProgram(new Communicator(), new PlayerPicker());
             _program.Run();
             _commMock.Verify(x => x.Write(StaticStrings.WelcomeMessage), Times.Once);
         }
         [TestMethod]
         public void Runs_ThenGridIsCreated()
         {
+            _communicator = new Communicator();
+            _program = new BattleshipProgram(new Communicator(), new PlayerPicker());
             _program.Run();
+            _gameCore = new Mock<IGameCore>();
             _gameCore.Verify(x => x.CreateGrid());
         }
     }

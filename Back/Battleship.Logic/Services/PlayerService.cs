@@ -6,10 +6,9 @@ using Battleship.Logic.Static;
 
 namespace Battleship.Logic.Services
 {
-    public class PlayerPicker: IPlayerPicker {
-        private ICommunicator _communicator;
+    public class PlayerService: IPlayerPicker {
 
-        public PlayerPicker() {
+        public PlayerService() {
         }
 
         public List<Player> ChoosePlayer()
@@ -22,9 +21,12 @@ namespace Battleship.Logic.Services
 
         public Player CreatePlayer() 
         {
-            _communicator.Write(StaticStrings.ChosePlayerMessage);
-            return new Player(_communicator.Read());
+            return new Player("a");
         }
 
+        public Player RandomFirstPlayer(List<Player> players)
+        {
+            return null;
+        }
     }
 }
