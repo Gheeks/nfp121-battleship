@@ -31,5 +31,22 @@ namespace Battleship.Logic.Tests.Services
             Assert.AreEqual(2, tester.Players.Count);
         }
 
+        [TestMethod]
+        public void TestGameBothPlayerHas6Ships()
+        {
+            GameService tester = CreateGameWithTwoPlayersAnd8Grid();
+            //tester.GridService.PlaceShip(tester.GridService.gridInstance.cells, new Ship());
+        }
+        
+
+        public GameService CreateGameWithTwoPlayersAnd8Grid()
+        {
+            GameService tester = new GameService();
+            tester.CreateNewGame();
+            tester.GridService.CreateNewGrid(8);
+            tester.Players.Add(tester.PlayerService.CreatePlayer());
+            tester.Players.Add(tester.PlayerService.CreatePlayer());
+            return tester;
+        }
     }
 }
