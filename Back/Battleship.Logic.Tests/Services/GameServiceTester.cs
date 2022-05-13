@@ -26,8 +26,8 @@ namespace Battleship.Logic.Tests.Services
         {
             GameService tester = new GameService();
             tester.CreateNewGame();
-            tester.PlayerService.CreatePlayer();
-            tester.PlayerService.CreatePlayer();
+            tester.Players.Add(tester.PlayerService.CreatePlayer());
+            tester.Players.Add(tester.PlayerService.CreatePlayer());
             Assert.AreEqual(2, tester.Players.Count);
         }
 

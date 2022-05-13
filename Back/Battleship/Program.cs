@@ -10,7 +10,7 @@ namespace Battleship
 
         public static void Main(string[] args)
         {
-            _battleshipProgram = new BattleshipProgram(new Communicator(), new PlayerPicker());
+            _battleshipProgram = new BattleshipProgram(new Communicator(), new PlayerService());
             _battleshipProgram.Run();
         }
     }

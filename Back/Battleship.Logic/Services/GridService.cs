@@ -10,6 +10,10 @@ namespace Battleship.Logic.Services
     {
         public Grid gridInstance { get; set; }
 
+        public GridService()
+        {
+        }
+
         public GridService(Grid g) 
         {
             gridInstance = g;
@@ -17,7 +21,9 @@ namespace Battleship.Logic.Services
         
         public Grid CreateNewGrid(int dim)
         {
-            return null;
+            this.gridInstance = new Grid(dim);
+            this.gridInstance.cells = this.gridInstance.CreateGrid();
+            return this.gridInstance;
         }
 
         public bool PlaceShip(List<List<Cell>> cellList, Ship ship, int x, int y) 

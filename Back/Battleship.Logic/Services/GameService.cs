@@ -13,7 +13,10 @@ namespace Battleship.Logic.Services
 
         public GameService CreateNewGame()
         {
-            return null;
+            GridService = new GridService();
+            PlayerService = new PlayerService();
+            Players = new List<Player>();
+            return this;
         }
     }
 }

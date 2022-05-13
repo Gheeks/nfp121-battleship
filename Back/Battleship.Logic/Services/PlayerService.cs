@@ -26,7 +26,9 @@ namespace Battleship.Logic.Services
 
         public Player RandomFirstPlayer(List<Player> players)
         {
-            return null;
+            Random random = new Random();
+            int index = random.Next(players.Count);
+            return players[index];
         }
     }
 }
