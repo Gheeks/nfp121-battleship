@@ -9,7 +9,6 @@ namespace Battleship.Logic.Models
         public Cruiser()
         {
             Name = "Cruiser";
-            Orientation = ShipOrientation.Null;
             Size = 4;
         }
     }

@@ -6,7 +6,6 @@
         South,
         East,
         West,
-        Horizontal,
-        Null
+        Horizontal
     }
 }

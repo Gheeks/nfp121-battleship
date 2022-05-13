@@ -26,7 +26,7 @@ namespace Battleship.Logic.Models.Ships
         public void TestIfBoatHasNoOrientation()
         {
             Cruiser ship = new Cruiser();
-            Assert.AreEqual(ShipOrientation.Null, ship.Orientation);
+            Assert.IsNull(ship.Orientation);
         }
 
         [TestMethod]

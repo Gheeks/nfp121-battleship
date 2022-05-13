@@ -9,7 +9,6 @@ namespace Battleship.Logic.Models
         public AircraftCarrier()
         {
             Name = "Aircraft Carrier";
-            Orientation = ShipOrientation.Null;
             Size = 5;
         }
     }

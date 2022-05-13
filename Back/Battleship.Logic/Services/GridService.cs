@@ -49,6 +49,7 @@ namespace Battleship.Logic.Services
                             case ShipOrientation.West:
                                 cellList[x][y - i].ship = ship;
                                 break;
+                            // Todo: HORIZONTAL PLACEMENT
                         }
                     }
                 }
