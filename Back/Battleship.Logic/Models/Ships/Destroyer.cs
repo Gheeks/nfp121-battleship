@@ -8,7 +8,9 @@ namespace Battleship.Logic.Models
     {
         public Destroyer() 
         {
-            
+            Name = "Destroyer";
+            Orientation = ShipOrientation.Null;
+            Size = 3;
         }
     }
 }

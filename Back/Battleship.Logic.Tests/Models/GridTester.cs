@@ -47,7 +47,8 @@ namespace Battleship.Logic.Tests.Models
         public void TestGridWithPlacement()
         {
             var (g,cells, gridService) = CreateTestEnvironnement(8);
-            Ship ship = new Ship("GroBato", 4, ShipOrientation.East);
+            Ship ship = new Cruiser();
+            ship.Orientation = ShipOrientation.East;
             gridService.PlaceShip(cells, ship, 1, 1);
             for(int i = 1; i < 4; i++)
             {
@@ -59,7 +60,8 @@ namespace Battleship.Logic.Tests.Models
         public void TestGridWithPlacementOutOfBound()
         {
             var (g, cells, gridService) = CreateTestEnvironnement(2);
-            Ship ship = new Ship("TroGroBato", 4, ShipOrientation.East);
+            Ship ship = new Cruiser();
+            ship.Orientation = ShipOrientation.East;
             Assert.AreEqual(false, gridService.PlaceShip(cells, ship, 1, 1));
         }
 
@@ -67,7 +69,8 @@ namespace Battleship.Logic.Tests.Models
         public void TestGridWithPlacementWithShipIn()
         {
             var (g, cells, gridService) = CreateTestEnvironnement(8);
-            Ship ship = new Ship("GroBato", 4, ShipOrientation.East);
+            Ship ship = new Cruiser();
+            ship.Orientation = ShipOrientation.East;
             gridService.PlaceShip(cells, ship, 1, 1);
             Assert.AreEqual(false, gridService.PlaceShip(cells, ship, 1, 1));
         }
@@ -76,9 +79,15 @@ namespace Battleship.Logic.Tests.Models
         public void TestGridWithPlacementOfMultipleShip()
         {
             var (g, cells, gridService) = CreateTestEnvironnement(8);
-            Ship ship = new Ship("GroBato", 5, ShipOrientation.East);
-            Ship ship1 = new Ship("GroBato", 4, ShipOrientation.North);
-            Ship ship2 = new Ship("GroBato", 2, ShipOrientation.South);
+            Ship ship = new AircraftCarrier();
+            ship.Orientation = ShipOrientation.East;
+
+            Ship ship1 = new Cruiser();
+            ship1.Orientation = ShipOrientation.North;
+
+            Ship ship2 = new Torpedo();
+            ship2.Orientation = ShipOrientation.South;
+
             Assert.AreEqual(true, gridService.PlaceShip(cells, ship, 1, 1));
             Assert.AreEqual(true, gridService.PlaceShip(cells, ship1, 2, 3));
             Assert.AreEqual(true, gridService.PlaceShip(cells, ship2, 5, 2));

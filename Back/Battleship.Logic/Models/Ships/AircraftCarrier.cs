@@ -4,11 +4,13 @@ using System.Text;
 
 namespace Battleship.Logic.Models
 {
-    public class Cruiser : Ship
+    public class AircraftCarrier : Ship
     {
-        public Cruiser() 
+        public AircraftCarrier()
         {
-            
+            Name = "Aircraft Carrier";
+            Orientation = ShipOrientation.Null;
+            Size = 5;
         }
     }
 }

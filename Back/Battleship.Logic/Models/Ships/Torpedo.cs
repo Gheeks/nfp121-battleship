@@ -8,7 +8,9 @@ namespace Battleship.Logic.Models
     {
         public Torpedo() 
         {
-            
+            Name = "Torpedo";
+            Orientation = ShipOrientation.Null;
+            Size = 2;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Battleship.Logic.Models.Ships
         public void TestIfBoatSizeIsCorrect()
         {
             Destroyer ship = new Destroyer();
-            Assert.AreEqual(5, ship.Size);
+            Assert.AreEqual(3, ship.Size);
         }
 
         [TestMethod]
@@ -23,17 +23,17 @@ namespace Battleship.Logic.Models.Ships
         }
 
         [TestMethod]
-        public void TestIfBoatHasOrientation()
+        public void TestIfBoatHasNoOrientation()
         {
             Destroyer ship = new Destroyer();
-            Assert.IsNotNull(ship.Orientation);
+            Assert.AreEqual(ShipOrientation.Null, ship.Orientation);
         }
 
         [TestMethod]
         public void TestIfBoatHasState()
         {
             Destroyer ship = new Destroyer();
-            Assert.IsNotNull(ship.isDestroyed);
+            Assert.IsNotNull(ship.IsDestroyed);
         }
     }
 }

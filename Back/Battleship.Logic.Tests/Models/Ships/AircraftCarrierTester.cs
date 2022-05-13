@@ -23,17 +23,17 @@ namespace Battleship.Logic.Models.Ships
         }
 
         [TestMethod]
-        public void TestIfBoatHasOrientation()
+        public void TestIfBoatHasNoOrientation()
         {
             AircraftCarrier ship = new AircraftCarrier();
-            Assert.IsNotNull(ship.Orientation);
+            Assert.AreEqual(ShipOrientation.Null, ship.Orientation);
         }
 
         [TestMethod]
         public void TestIfBoatHasState()
         {
             AircraftCarrier ship = new AircraftCarrier();
-            Assert.IsNotNull(ship.isDestroyed);
+            Assert.IsNotNull(ship.IsDestroyed);
         }
     }
 }
