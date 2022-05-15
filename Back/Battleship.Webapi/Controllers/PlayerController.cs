@@ -3,6 +3,7 @@ using Battleship.Webapi.Model;
 using Battleship.Logic.Services;
 using Battleship.Logic.Models;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace Battleship.Webapi.Controllers
 {
@@ -30,13 +31,6 @@ namespace Battleship.Webapi.Controllers
             return _context.Players.First(p => p.Id == id);
         }
 
-        [HttpPost("Login")]
-        public Player Login([FromBody] string name, [FromBody] string password)
-        {
-            return _context.Players.First(p => p.Name == name && p.Password == password);
-        }
-
-
         [HttpPost]
         public Player Post([FromBody] Player us)
         {
@@ -44,6 +38,17 @@ namespace Battleship.Webapi.Controllers
             _context.Players.Add(us);
             _context.SaveChanges();
             return us;
+        }
+
+        [HttpPost("Login")]
+        public Player Login([FromBody] Player player)
+        {
+            string password;
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                password = _playerService.GetHash(sha256Hash, player.Password);
+            }
+            return _context.Players.First(p => p.Name == player.Name && p.Password == password);
         }
 
         [HttpPost("CreateNewUser")]
