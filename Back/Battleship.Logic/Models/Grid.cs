@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Battleship.Logic.Models.Enums;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Battleship.Logic.Models
@@ -57,6 +59,11 @@ namespace Battleship.Logic.Models
                     return true;
             }
             return false;
+        }
+
+        public GridStatus GetState(int x, int y)
+        {
+            return null
         }
     }
 }

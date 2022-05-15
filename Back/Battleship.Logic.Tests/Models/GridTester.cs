@@ -100,5 +100,5 @@ namespace Battleship.Logic.Tests.Models
             GridService gridService = new GridService();
             return (g,cells, gridService);
         }
-    }
+    }   
 }

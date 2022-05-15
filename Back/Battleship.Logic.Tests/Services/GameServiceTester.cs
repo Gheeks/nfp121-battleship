@@ -1,4 +1,5 @@
 ﻿using Battleship.Logic.Models;
+using Battleship.Logic.Models.Enums;
 using Battleship.Logic.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -41,7 +42,7 @@ namespace Battleship.Logic.Tests.Services
         }
 
         [TestMethod]
-        public void TestGameBothPlayerHas6RightShips()
+        public void TestGameBothPlayerHas6Ships()
         {
             GameService tester = CreateGameWithTwoPlayersAnd8Grid();
 
@@ -65,8 +66,21 @@ namespace Battleship.Logic.Tests.Services
         [TestMethod]
         public void TestPlayerCanHitBoat()
         {
-            GameService tester = CreateGameWithTwoPlayersAnd8Grid();
-            //tester.GridService.PlaceShip(tester.GridService.gridInstance.cells, new Ship());
+            GameService tester = CreateArtificalGame();
+            tester.TryHitBoat(tester.Players[0], tester.Players[1], 0, 0);
+            tester.GetPlayerGrid(tester.Players[1]).GetState(0,0);
+            Assert.AreEqual(GridStatus.Ship_Touched, tester.GetPlayerGrid(tester.Players[1]).GetState(0, 0));
+        }
+
+        [TestMethod]
+        public void TestPlayerMissAndPlayerTurn()
+        {
+            GameService tester = CreateArtificalGame();
+            //Force
+            tester.PlayerToPlay = tester.Players[0];
+            tester.TryHitBoat(tester.Players[0], tester.Players[1], 0, 0);
+            tester.GetPlayerGrid(tester.Players[1]).GetState(0, 0);
+            Assert.IsTrue(tester.GetPlayerGrid(tester.Players[1]).GetState(0, 0) == GridStatus.NoShip_Touched && tester.PlayerToPlay == tester.Players[1]);
         }
 
 
@@ -116,6 +130,25 @@ namespace Battleship.Logic.Tests.Services
 
             // Torpedo = 2
             service.GridService.PlaceShip(g, g.cells, ships[5], 5, 0);
+        }
+
+        public GameService CreateArtificalGame()
+        {
+            GameService tester = CreateGameWithTwoPlayersAnd8Grid();
+
+            // Simulate JSON grid from request
+            Grid grid = new Grid(8);
+            grid.cells = grid.CreateGrid();
+            CreateShipForTest(tester, grid);
+
+            // Simulate JSON grid from request
+            Grid grid2 = new Grid(8);
+            grid2.cells = grid2.CreateGrid();
+            CreateShipForTest(tester, grid2);
+
+            tester.PlaceShipsForPlayer(tester.Players[0], grid);
+            tester.PlaceShipsForPlayer(tester.Players[1], grid2);
+            return tester;
         }
     }
 }

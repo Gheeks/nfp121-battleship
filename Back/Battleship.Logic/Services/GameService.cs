@@ -55,5 +55,9 @@ namespace Battleship.Logic.Services
             return GridService.PlaceShipFromFrontGrid(g, grid);
         }
 
+        public void TryHitBoat(Player player1, Player player2, int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
