@@ -10,6 +10,10 @@ import { FooterComponent } from './components/struct/footer/footer.component';
 import { HeaderComponent } from './components/struct/header/header.component';
 import { GridComponentComponent } from './grid-component/grid-component.component';
 import { AccountComponent } from './account/account.component';
+import { RegisterComponent } from './account/register/register.component';
+import { LoginComponent } from './account/login/login.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { StatsGridComponent } from './components/stats-grid/stats-grid.component';
 
 @NgModule({
   declarations: [
@@ -17,15 +21,19 @@ import { AccountComponent } from './account/account.component';
     HeaderComponent,
     FooterComponent,
     GridComponentComponent,
-    AccountComponent
+    AccountComponent,
+    RegisterComponent,
+    StatsGridComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
     FormsModule,
     BrowserModule,
+    AgGridModule.withComponents([]),
     AppRoutingModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

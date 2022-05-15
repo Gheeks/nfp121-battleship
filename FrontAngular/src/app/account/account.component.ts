@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-account',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account.component.sass']
 })
 export class AccountComponent implements OnInit {
+  constructor(private formBuilder: FormBuilder) {
 
-  constructor() { }
+  }
 
   ngOnInit(): void {
   }

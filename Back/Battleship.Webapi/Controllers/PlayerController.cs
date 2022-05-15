@@ -16,7 +16,6 @@ namespace Battleship.Webapi.Controllers
         {
             _context = context;
             _playerService = new PlayerService();
-
         }
 
         [HttpGet]
