@@ -8,27 +8,20 @@ namespace Battleship.Logic.Services
 {
     public class GridService
     {
-        public Grid gridInstance { get; set; }
-
         public GridService()
         {
         }
 
-        public GridService(Grid g) 
-        {
-            gridInstance = g;
-        }
-        
         public Grid CreateNewGrid(int dim)
         {
-            this.gridInstance = new Grid(dim);
-            this.gridInstance.cells = this.gridInstance.CreateGrid();
-            return this.gridInstance;
+            Grid grid = new Grid(dim);
+            grid.cells = grid.CreateGrid();
+            return grid;
         }
 
-        public bool PlaceShip(List<List<Cell>> cellList, Ship ship, int x, int y) 
+        public bool PlaceShip(Grid grid, List<List<Cell>> cellList, Ship ship, int x, int y) 
         {
-            var (succeed, errorStatus) = CheckShipRequirements(ref cellList, ref ship, ref x, ref y);
+            var (succeed, errorStatus) = CheckShipRequirements(grid, ref cellList, ref ship, ref x, ref y);
             if (succeed)
             {
                 try
@@ -62,7 +55,7 @@ namespace Battleship.Logic.Services
             return false;
         }
 
-        public (bool, List<ErrorEnum>) CheckShipRequirements(ref List<List<Cell>> cellList, ref Ship ship, ref int x, ref int y)
+        public (bool, List<ErrorEnum>) CheckShipRequirements(Grid grid, ref List<List<Cell>> cellList, ref Ship ship, ref int x, ref int y)
         {
             Cell initialCell = cellList[x][y];
             List<ErrorEnum> errors = new List<ErrorEnum>();
@@ -82,12 +75,12 @@ namespace Battleship.Logic.Services
                 {
                     case ShipOrientation.North:
                     case ShipOrientation.South:
-                        doesGridSupportShipSize = gridInstance.CheckIfShipExistOnRange(cellList, ship, x, 0);
+                        doesGridSupportShipSize = grid.CheckIfShipExistOnRange(cellList, ship, x, y);
                         break;
 
                     case ShipOrientation.East:
                     case ShipOrientation.West:
-                        doesGridSupportShipSize = gridInstance.CheckIfShipExistOnRange(cellList, ship, 0, y);
+                        doesGridSupportShipSize = grid.CheckIfShipExistOnRange(cellList, ship, x, y);
                         break;
                 }
 
@@ -104,14 +97,40 @@ namespace Battleship.Logic.Services
             }
         }
 
-        public bool PlaceShipsForPlayer(Player p, List<Ship> ships)
-        {
-            return false;
-        }
-
         public List<Ship> GetShips(Grid g)
         {
-            return null;
+            List<Ship> ships = new List<Ship>();
+            foreach(List<Cell> cells in g.cells)
+            {
+                foreach (Cell cell in cells)
+                {
+                    if (cell.ship != null)
+                    {
+                        if (!ships.Contains(cell.ship))
+                            ships.Add(cell.ship);
+                    }
+                }
+            }
+            return ships;
+        }
+
+        public bool PlaceShipFromFrontGrid(Grid playerGrid, Grid frontGrid)
+        {
+            if (frontGrid?.cells == null || playerGrid?.cells == null) return false;
+            try
+            {
+                if (frontGrid.cells.Count != playerGrid.cells.Count) return false;
+                else
+                {
+                    playerGrid.cells = frontGrid.cells;
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return false;
         }
     }
 }

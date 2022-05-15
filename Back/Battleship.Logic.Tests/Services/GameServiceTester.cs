@@ -17,8 +17,8 @@ namespace Battleship.Logic.Tests.Services
         {
             GameService tester = new GameService();
             tester.CreateNewGame();
-            tester.GridService.CreateNewGrid(8);
-            Assert.AreEqual(8, tester.GridService.gridInstance.cells.Count);
+            Grid g = tester.GridService.CreateNewGrid(8);
+            Assert.AreEqual(8, g.cells.Count);
         }
 
         [TestMethod]
@@ -36,19 +36,30 @@ namespace Battleship.Logic.Tests.Services
         {
             GameService tester = CreateGameWithTwoPlayersAnd8Grid();
             Assert.IsTrue(tester.GridsPlayer.Count == 2
-                && tester.GridsPlayer.Exists(g => g.PlayerOwner == tester.Players[0])
-                && tester.GridsPlayer.Exists(g => g.PlayerOwner == tester.Players[1]));
+                && tester.GridsPlayer.ContainsKey(tester.Players[0])
+                && tester.GridsPlayer.ContainsKey(tester.Players[1]));
         }
 
         [TestMethod]
         public void TestGameBothPlayerHas6RightShips()
         {
             GameService tester = CreateGameWithTwoPlayersAnd8Grid();
-            List<Ship> ships = new List<Ship>();
-            tester.GridService.PlaceShipsForPlayer(tester.Players[0], ships);
-            tester.GridService.PlaceShipsForPlayer(tester.Players[1], ships);
-            Assert.IsTrue(tester.GridService.GetShips(tester.GridsPlayer.Find(g => g.PlayerOwner == tester.Players[0])).Count == 6
-                && tester.GridService.GetShips(tester.GridsPlayer.Find(g => g.PlayerOwner == tester.Players[1])).Count == 6);
+
+            // Simulate JSON grid from request
+            Grid grid = new Grid(8);
+            grid.cells = grid.CreateGrid();
+            CreateShipForTest(tester, grid);
+
+            // Simulate JSON grid from request
+            Grid grid2 = new Grid(8);
+            grid2.cells = grid2.CreateGrid();
+            CreateShipForTest(tester, grid2);
+
+            tester.PlaceShipsForPlayer(tester.Players[0], grid);
+            tester.PlaceShipsForPlayer(tester.Players[1], grid2);
+
+            Assert.IsTrue(tester.GridService.GetShips(tester.GridsPlayer.FirstOrDefault(g => g.Key == tester.Players[0]).Value).Count == 6
+                && tester.GridService.GetShips(tester.GridsPlayer.FirstOrDefault(g => g.Key == tester.Players[1]).Value).Count == 6);
         }
 
         [TestMethod]
@@ -72,8 +83,39 @@ namespace Battleship.Logic.Tests.Services
             tester.CreateNewGame();
             tester.Players.Add(tester.PlayerService.CreatePlayer());
             tester.Players.Add(tester.PlayerService.CreatePlayer());
-            tester.GridService.CreateNewGrid(8);
+            tester.CreateGridToPLayers(tester.Players, 8);
             return tester;
+        }
+
+        public void CreateShipForTest(GameService service, Grid g)
+        {
+            List<Ship> ships = new List<Ship>()
+            {
+                new AircraftCarrier(),
+                new Cruiser(),
+                new Cruiser(),
+                new Destroyer(),
+                new Destroyer(),
+                new Torpedo(),
+            };
+            foreach(var ship in ships)
+            {
+                ship.Orientation = ShipOrientation.East;
+            }
+
+            // AircraftCarrier = 5
+            service.GridService.PlaceShip(g, g.cells, ships[0], 0, 0);
+
+            // Cruiser = 4
+            service.GridService.PlaceShip(g, g.cells, ships[1], 1, 0);
+            service.GridService.PlaceShip(g, g.cells, ships[2], 2, 0);
+            
+            // Destroyer = 3
+            service.GridService.PlaceShip(g, g.cells, ships[3], 3, 0);
+            service.GridService.PlaceShip(g, g.cells, ships[4], 4, 0);
+
+            // Torpedo = 2
+            service.GridService.PlaceShip(g, g.cells, ships[5], 5, 0);
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Battleship.Logic.Tests.Models
             var (g,cells, gridService) = CreateTestEnvironnement(8);
             Ship ship = new Cruiser();
             ship.Orientation = ShipOrientation.East;
-            gridService.PlaceShip(cells, ship, 1, 1);
+            gridService.PlaceShip(g, cells, ship, 1, 1);
             for(int i = 1; i < 4; i++)
             {
                 Assert.AreEqual(true, g.HasShip(cells, 1, i));
@@ -62,7 +62,7 @@ namespace Battleship.Logic.Tests.Models
             var (g, cells, gridService) = CreateTestEnvironnement(2);
             Ship ship = new Cruiser();
             ship.Orientation = ShipOrientation.East;
-            Assert.AreEqual(false, gridService.PlaceShip(cells, ship, 1, 1));
+            Assert.AreEqual(false, gridService.PlaceShip(g, cells, ship, 1, 1));
         }
 
         [TestMethod]
@@ -71,8 +71,8 @@ namespace Battleship.Logic.Tests.Models
             var (g, cells, gridService) = CreateTestEnvironnement(8);
             Ship ship = new Cruiser();
             ship.Orientation = ShipOrientation.East;
-            gridService.PlaceShip(cells, ship, 1, 1);
-            Assert.AreEqual(false, gridService.PlaceShip(cells, ship, 1, 1));
+            gridService.PlaceShip(g, cells, ship, 1, 1);
+            Assert.AreEqual(false, gridService.PlaceShip(g, cells, ship, 1, 1));
         }
 
         [TestMethod]
@@ -88,16 +88,16 @@ namespace Battleship.Logic.Tests.Models
             Ship ship2 = new Torpedo();
             ship2.Orientation = ShipOrientation.South;
 
-            Assert.AreEqual(true, gridService.PlaceShip(cells, ship, 1, 1));
-            Assert.AreEqual(true, gridService.PlaceShip(cells, ship1, 2, 3));
-            Assert.AreEqual(true, gridService.PlaceShip(cells, ship2, 5, 2));
+            Assert.AreEqual(true, gridService.PlaceShip(g, cells, ship, 1, 1));
+            Assert.AreEqual(true, gridService.PlaceShip(g, cells, ship1, 2, 3));
+            Assert.AreEqual(true, gridService.PlaceShip(g, cells, ship2, 5, 2));
         }
 
         public (Grid, List<List<Cell>>, GridService) CreateTestEnvironnement(int dim)
         {
             Grid g = new Grid(dim);
             List<List<Cell>> cells = g.CreateGrid();
-            GridService gridService = new GridService(g);
+            GridService gridService = new GridService();
             return (g,cells, gridService);
         }
     }
