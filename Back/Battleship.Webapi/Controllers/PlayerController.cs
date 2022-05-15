@@ -15,6 +15,8 @@ namespace Battleship.Webapi.Controllers
         public PlayerController(PlayerDbContext context)
         {
             _context = context;
+            _playerService = new PlayerService();
+
         }
 
         [HttpGet]
@@ -27,6 +29,12 @@ namespace Battleship.Webapi.Controllers
         public Player Get(int id)
         {
             return _context.Players.First(p => p.Id == id);
+        }
+
+        [HttpPost("Login")]
+        public Player Login([FromBody] string name, [FromBody] string password)
+        {
+            return _context.Players.First(p => p.Name == name && p.Password == password);
         }
 
 

@@ -35,5 +35,28 @@ namespace Battleship.Logic.Tests.Services
             }
         }
 
+        [TestMethod]
+        public void TestifMailIsValid()
+        {
+            string testEmail = "a@a.fr";
+            PlayerService playerService = new PlayerService();
+            Assert.IsTrue(playerService.IsEmailIsReal(testEmail));
+        }
+
+        [TestMethod]
+        public void TestifPasswordIsCorrect()
+        {
+            string testPassowrd = "Test567!";
+            PlayerService playerService = new PlayerService();
+            Assert.IsTrue(playerService.IsPasswordCorrect(testPassowrd));
+        }
+        [TestMethod]
+        public void TestCreateNewUser()
+        {
+            PlayerService playerService = new PlayerService();
+            Player p = playerService.CreatePlayer();
+            Assert.IsTrue(playerService.CreateNewUser(p).Name == p.Name && playerService.CreateNewUser(p).Mail == p.Mail && playerService.CreateNewUser(p).Password == p.Password); 
+        }
+
     }
 }

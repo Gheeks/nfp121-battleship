@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Battleship.Logic.Models;
 
 namespace Battleship.Logic.Services
@@ -19,7 +20,7 @@ namespace Battleship.Logic.Services
 
         public Player CreatePlayer() 
         {
-            return new Player("1","a@a.fr","a");
+            return new Player("1","a@a.fr", "Test567!");
         }
 
         public Player RandomFirstPlayer(List<Player> players)
@@ -29,17 +30,15 @@ namespace Battleship.Logic.Services
             return players[index];
         }
 
-        public void LoginPlayer()
+        public void LoginPlayer(string name, string password)
         {
-            //jsp quoi faire
+            
         }
 
         public Player CreateNewUser(Player player)
         {
-            // Todo : Check Password
             if (IsPasswordCorrect(player.Password))
             {
-                // If email contains @ and .
                 if (IsEmailIsReal(player.Mail))
                 {
                     return new Player(player.Name, player.Mail, player.Password);
@@ -48,9 +47,36 @@ namespace Battleship.Logic.Services
             return null;
         }
 
-        public bool IsPasswordCorrect(string password) { return false; }
+        public bool IsPasswordCorrect(string password) 
+        {
+            if (password.Length > 7 && password.Any(char.IsUpper) && password.Any(char.IsNumber) && password.Any(ch => !char.IsLetterOrDigit(ch)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-        public bool IsEmailIsReal(string mail) { return false; }
+        public bool IsEmailIsReal(string mail) 
+        {
+            var trimmedEmail = mail.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false;
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(mail);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
     }
 }
