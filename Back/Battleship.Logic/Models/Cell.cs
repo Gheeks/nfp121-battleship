@@ -13,6 +13,7 @@ namespace Battleship.Logic.Models
         public GridStatus touched;
         public Cell(int x, int y)
         {
+            touched = GridStatus.NoShip_NotTouched;
             this.x = x;
             this.y = y;
         }

@@ -63,7 +63,16 @@ namespace Battleship.Logic.Models
 
         public GridStatus GetState(int x, int y)
         {
-            return null
+            try
+            {
+                Cell c = (from cell in cells from item in cell where item.x == x && item.y == y select item).FirstOrDefault();
+                if (c != null) return c.touched;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return default;
         }
     }
 }

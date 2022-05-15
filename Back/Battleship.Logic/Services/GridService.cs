@@ -32,15 +32,19 @@ namespace Battleship.Logic.Services
                         {
                             case ShipOrientation.North:
                                 cellList[x + i][y].ship = ship;
+                                cellList[x + i][y].touched = GridStatus.Ship_NotTouched;
                                 break;
                             case ShipOrientation.South:
                                 cellList[x - i][y].ship = ship;
+                                cellList[x - i][y].touched = GridStatus.Ship_NotTouched;
                                 break;
                             case ShipOrientation.East:
                                 cellList[x][y + i].ship = ship;
+                                cellList[x][y + i].touched = GridStatus.Ship_NotTouched;
                                 break;
                             case ShipOrientation.West:
                                 cellList[x][y - i].ship = ship;
+                                cellList[x][y - i].touched = GridStatus.Ship_NotTouched;
                                 break;
                             // Todo: HORIZONTAL PLACEMENT
                         }
@@ -131,6 +135,16 @@ namespace Battleship.Logic.Services
 
             }
             return false;
+        }
+
+        public void SwitchState(Grid grid, int x, int y)
+        {
+            Cell c = (from cell in grid.cells from item in cell where item.x == x && item.y == y select item).FirstOrDefault();
+            if (c != null)
+            {
+                if (c.touched == GridStatus.NoShip_NotTouched) c.touched = GridStatus.NoShip_Touched;
+                else if (c.touched == GridStatus.Ship_NotTouched) c.touched = GridStatus.Ship_Touched;
+            }
         }
     }
 }
