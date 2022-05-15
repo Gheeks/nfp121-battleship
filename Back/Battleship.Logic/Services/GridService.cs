@@ -103,5 +103,15 @@ namespace Battleship.Logic.Services
                 }
             }
         }
+
+        public bool PlaceShipsForPlayer(Player p, List<Ship> ships)
+        {
+            return false;
+        }
+
+        public List<Ship> GetShips(Grid g)
+        {
+            return null;
+        }
     }
 }

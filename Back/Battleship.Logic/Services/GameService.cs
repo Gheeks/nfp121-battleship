@@ -10,7 +10,9 @@ namespace Battleship.Logic.Services
         public GridService GridService { get; set; }
         public PlayerService PlayerService { get; set; }
         public List<Player> Players { get; set; }
-        public Player PlayerToPlayer { get; set; }
+        public List<Grid> GridsPlayer { get; set; }
+
+        public Player PlayerToPlay { get; set; }
 
         public GameService CreateNewGame()
         {

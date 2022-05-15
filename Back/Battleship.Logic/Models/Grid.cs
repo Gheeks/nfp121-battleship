@@ -8,6 +8,7 @@ namespace Battleship.Logic.Models
     {
         public static int Dimensions = 8;
         public List<List<Cell>> cells { get; set; }
+        public Player PlayerOwner { get; set; }
 
         public Grid(int dimensions) {
             Dimensions = dimensions;

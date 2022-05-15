@@ -32,20 +32,47 @@ namespace Battleship.Logic.Tests.Services
         }
 
         [TestMethod]
-        public void TestGameBothPlayerHas6Ships()
+        public void TestBothPlayersHaveGrid()
+        {
+            GameService tester = CreateGameWithTwoPlayersAnd8Grid();
+            Assert.IsTrue(tester.GridsPlayer.Count == 2
+                && tester.GridsPlayer.Exists(g => g.PlayerOwner == tester.Players[0])
+                && tester.GridsPlayer.Exists(g => g.PlayerOwner == tester.Players[1]));
+        }
+
+        [TestMethod]
+        public void TestGameBothPlayerHas6RightShips()
+        {
+            GameService tester = CreateGameWithTwoPlayersAnd8Grid();
+            List<Ship> ships = new List<Ship>();
+            tester.GridService.PlaceShipsForPlayer(tester.Players[0], ships);
+            tester.GridService.PlaceShipsForPlayer(tester.Players[1], ships);
+            Assert.IsTrue(tester.GridService.GetShips(tester.GridsPlayer.Find(g => g.PlayerOwner == tester.Players[0])).Count == 6
+                && tester.GridService.GetShips(tester.GridsPlayer.Find(g => g.PlayerOwner == tester.Players[1])).Count == 6);
+        }
+
+        [TestMethod]
+        public void TestPlayerCanHitBoat()
         {
             GameService tester = CreateGameWithTwoPlayersAnd8Grid();
             //tester.GridService.PlaceShip(tester.GridService.gridInstance.cells, new Ship());
         }
-        
+
+
+        [TestMethod]
+        public void TestPlayerCanHitBoatTillHeFall()
+        {
+            GameService tester = CreateGameWithTwoPlayersAnd8Grid();
+            //tester.GridService.PlaceShip(tester.GridService.gridInstance.cells, new Ship());
+        }
 
         public GameService CreateGameWithTwoPlayersAnd8Grid()
         {
             GameService tester = new GameService();
             tester.CreateNewGame();
+            tester.Players.Add(tester.PlayerService.CreatePlayer());
+            tester.Players.Add(tester.PlayerService.CreatePlayer());
             tester.GridService.CreateNewGrid(8);
-            tester.Players.Add(tester.PlayerService.CreatePlayer());
-            tester.Players.Add(tester.PlayerService.CreatePlayer());
             return tester;
         }
     }
