@@ -1,4 +1,5 @@
 using Battleship.Webapi.Controllers;
+using Battleship.Webapi.Model;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

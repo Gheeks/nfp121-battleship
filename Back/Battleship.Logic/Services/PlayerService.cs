@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Battleship.Logic.Interfaces;
 using Battleship.Logic.Models;
 using Battleship.Logic.Static;
+using Battleship.Webapi.Controllers;
+using Battleship.Webapi.Model;
 
 namespace Battleship.Logic.Services
 {
@@ -29,6 +31,11 @@ namespace Battleship.Logic.Services
             Random random = new Random();
             int index = random.Next(players.Count);
             return players[index];
+        }
+
+        public void LoginPlayer()
+        {
+            //jsp quoi faire
         }
     }
 }
