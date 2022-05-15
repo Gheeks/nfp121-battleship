@@ -9,8 +9,8 @@ using Battleship.Webapi.Model;
 
 namespace Battleship.Webapi.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PlayerDbContext))]
+    partial class PlayerDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -25,13 +25,14 @@ namespace Battleship.Webapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Mail")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<string>("Password")
                         .IsRequired()

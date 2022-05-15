@@ -4,13 +4,16 @@ namespace Battleship.Logic.Models
 {
     public class Player
     {        
-        public Guid PlayerId = Guid.Empty;
-        public string Name;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Mail { get; set; }
+        public string Password { get; set; }
 
-        public Player(string name)
+        public Player(string name, string mail, string password)
         {
-            PlayerId = new Guid();
             Name = name;
+            Mail = mail;
+            Password = password;
         }
     }
 }

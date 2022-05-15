@@ -1,10 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Battleship.Logic.Interfaces;
 using Battleship.Logic.Models;
-using Battleship.Logic.Static;
-using Battleship.Webapi.Controllers;
-using Battleship.Webapi.Model;
 
 namespace Battleship.Logic.Services
 {
@@ -23,7 +19,7 @@ namespace Battleship.Logic.Services
 
         public Player CreatePlayer() 
         {
-            return new Player("a");
+            return new Player("1","a@a.fr","a");
         }
 
         public Player RandomFirstPlayer(List<Player> players)
@@ -37,5 +33,24 @@ namespace Battleship.Logic.Services
         {
             //jsp quoi faire
         }
+
+        public Player CreateNewUser(Player player)
+        {
+            // Todo : Check Password
+            if (IsPasswordCorrect(player.Password))
+            {
+                // If email contains @ and .
+                if (IsEmailIsReal(player.Mail))
+                {
+                    return new Player(player.Name, player.Mail, player.Password);
+                }
+            }
+            return null;
+        }
+
+        public bool IsPasswordCorrect(string password) { return false; }
+
+        public bool IsEmailIsReal(string mail) { return false; }
+
     }
 }

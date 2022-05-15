@@ -15,7 +15,7 @@ namespace Battleship.Logic.Tests.Models
         [TestMethod]
         public void TestPlayerIsNotNullCreation()
         {
-            Player p = new Player("test-name");
+            Player p = new Player("1", "a@a.fr", "a");
             Assert.IsNotNull(p);
         }
     }

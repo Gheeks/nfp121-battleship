@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddDbContextPool<UserDbContext>(opt =>
+builder.Services.AddDbContextPool<PlayerDbContext>(opt =>
 {
    string cs = "Server=localhost;Port=3306;Database=battleshipUser;Uid=battleshipUser;Pwd=battleshipUser;";
    opt.UseMySql(cs, ServerVersion.AutoDetect(cs));

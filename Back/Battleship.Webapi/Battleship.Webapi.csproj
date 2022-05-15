@@ -15,4 +15,8 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Battleship.Logic\Battleship.Logic.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -10,7 +10,7 @@ using Battleship.Webapi.Model;
 
 namespace Battleship.Webapi.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
+    [DbContext(typeof(PlayerDbContext))]
     [Migration("20220514134657_init")]
     partial class init
     {
