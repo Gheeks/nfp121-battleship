@@ -1,16 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Battleship.Webapi.Model;
 
 namespace Battleship.Webapi.Controllers
 {
-    public class User
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Mail { get; set; }
-        public string Password { get; set; }
-    }
-
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
@@ -26,22 +18,19 @@ namespace Battleship.Webapi.Controllers
             return _uc.Users.ToList();
         }
 
+        [HttpGet("{id}")]
+        public User Get(int id)
+        {
+            return _uc.Users.Find(id);
+        }
+
+
         [HttpPost]
         public User Post([FromBody] User us)
         {
             _uc.Users.Add(us);
             _uc.SaveChanges();
             return us;
-        }
-    }
-
-    public class UserDbContext : DbContext
-    {
-        public DbSet<User> Users { get; set; }
-
-        public UserDbContext(DbContextOptions<UserDbContext> uc) : base(uc)
-        {
-
         }
     }
 }

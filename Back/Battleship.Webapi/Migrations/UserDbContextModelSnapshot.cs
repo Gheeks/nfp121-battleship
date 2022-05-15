@@ -3,6 +3,7 @@ using Battleship.Webapi.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Battleship.Webapi.Model;
 
 #nullable disable
 
