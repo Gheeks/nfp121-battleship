@@ -1,10 +1,12 @@
 ﻿using Battleship.Logic.Models.Enums;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Battleship.Logic.Models
 {
+    [Keyless]
     public class Cell
     {
         public int x;
@@ -16,6 +18,11 @@ namespace Battleship.Logic.Models
             touched = GridStatus.NoShip_NotTouched;
             this.x = x;
             this.y = y;
+        }
+
+        private Cell()
+        {
+
         }
     }
 }

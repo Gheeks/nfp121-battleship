@@ -22,7 +22,7 @@ namespace Battleship.Logic.Services
 
         public Player CreatePlayer() 
         {
-            return new Player("1","a@a.fr", "Test567!");
+            return new Player("1","a@a.fr", "Teest567!");
         }
 
         public Player RandomFirstPlayer(List<Player> players)
