@@ -3,6 +3,7 @@ using System;
 using Battleship.Webapi.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Battleship.Webapi.Migrations
 {
     [DbContext(typeof(PlayerDbContext))]
-    partial class PlayerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220517030911_GridsCell")]
+    partial class GridsCell
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,9 +53,6 @@ namespace Battleship.Webapi.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("Dimensions")
                         .HasColumnType("int");
 
                     b.Property<int?>("PlayerOwnerId")
@@ -124,33 +123,19 @@ namespace Battleship.Webapi.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("Grid1IdId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Grid2IdId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Player1IdId")
+                    b.Property<int>("Player1Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Player1shots")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Player2IdId")
+                    b.Property<int>("Player2Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Player2shots")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Grid1IdId");
-
-                    b.HasIndex("Grid2IdId");
-
-                    b.HasIndex("Player1IdId");
-
-                    b.HasIndex("Player2IdId");
 
                     b.ToTable("Stats");
                 });
@@ -171,33 +156,6 @@ namespace Battleship.Webapi.Migrations
                         .HasForeignKey("PlayerOwnerId");
 
                     b.Navigation("PlayerOwner");
-                });
-
-            modelBuilder.Entity("Battleship.Logic.Models.Stats", b =>
-                {
-                    b.HasOne("Battleship.Logic.Models.Grid", "Grid1Id")
-                        .WithMany()
-                        .HasForeignKey("Grid1IdId");
-
-                    b.HasOne("Battleship.Logic.Models.Grid", "Grid2Id")
-                        .WithMany()
-                        .HasForeignKey("Grid2IdId");
-
-                    b.HasOne("Battleship.Logic.Models.Player", "Player1Id")
-                        .WithMany()
-                        .HasForeignKey("Player1IdId");
-
-                    b.HasOne("Battleship.Logic.Models.Player", "Player2Id")
-                        .WithMany()
-                        .HasForeignKey("Player2IdId");
-
-                    b.Navigation("Grid1Id");
-
-                    b.Navigation("Grid2Id");
-
-                    b.Navigation("Player1Id");
-
-                    b.Navigation("Player2Id");
                 });
 #pragma warning restore 612, 618
         }

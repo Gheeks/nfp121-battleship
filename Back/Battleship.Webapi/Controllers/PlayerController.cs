@@ -74,7 +74,8 @@ namespace Battleship.Webapi.Controllers
             }
         }
 
-        public string CreateToken(Player p)
+        [HttpPost("GetToken")]
+        public string CreateToken([FromBody] Player p)
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("qjhYyK^fPdcodL8@DG1#xaj2yI%%NYBGScBp7QMH30diTzN00yQbQQn3$9iBP6G^QC3E@DGcwbGXd29Ey!VhvARf0Ex3BV"));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);

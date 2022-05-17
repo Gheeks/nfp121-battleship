@@ -1,4 +1,5 @@
 ﻿using Battleship.Logic.Models;
+using Battleship.Logic.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Battleship.Logic.Services
 
         }
 
-        public void AutoShipPlacement(GameService service, Grid g)
+        public void AutoShipPlacement(Grid g)
         {
             List<Ship> ships = new List<Ship>()
             {
@@ -28,9 +29,9 @@ namespace Battleship.Logic.Services
             };
             foreach (var ship in ships)
             {      
-                int RandomOrientation = random.Next(4);
-                int randomX = random.Next(8);
-                int randomY = random.Next(8);   
+                int RandomOrientation = random.Next(3);
+                int randomX = random.Next(7);
+                int randomY = random.Next(7);   
                 switch (RandomOrientation)
                 {
                     case 0:
@@ -50,19 +51,41 @@ namespace Battleship.Logic.Services
                         break;
                 }
 
-                PlaceShipRecursive(service, g, g.cells, ship, randomX, randomY);
+                PlaceShipRecursive(g, g.cells, ship, randomX, randomY);
             }
         }
 
-        public void PlaceShipRecursive(GameService service, Grid grid, List<List<Cell>> cellList, Ship ship, int x, int y)
+        public void PlaceShipRecursive(Grid grid, List<List<Cell>> cellList, Ship ship, int x, int y)
         {
-            if (service.GridService.PlaceShip(grid, grid.cells, ship, x, y)){ }
+            if (GameService._instance.GridService.PlaceShip(grid, grid.cells, ship, x, y))
+            {
+                Console.WriteLine("ok");
+            }
             else
             {
-                int newRandomX = random.Next(8);
-                int newRandomY = random.Next(8);
-                PlaceShipRecursive(service, grid, grid.cells, ship, newRandomX, newRandomY);
+                int newRandomX = random.Next(7);
+                int newRandomY = random.Next(7);
+                PlaceShipRecursive(grid, grid.cells, ship, newRandomX, newRandomY);
             }
+        }
+
+        public Grid TryHitPlayerGrid(Grid g)
+        {
+            return null;
+            //if (gridStatus == GridStatus.NoShip_NotTouched || gridStatus == GridStatus.Ship_NotTouched)
+            //{
+            //    GameService._instance.GridService.SwitchState(g, x, y);
+            //    return false;
+            //}
+            //else
+            //{
+            //    return true;
+            //}
+        }
+
+        public bool HitPlayerGrid(Grid g, int difficulty)
+        {
+            return false;
         }
     }
 }

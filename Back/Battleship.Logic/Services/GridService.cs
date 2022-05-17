@@ -19,7 +19,7 @@ namespace Battleship.Logic.Services
             return grid;
         }
 
-        public bool PlaceShip(Grid grid, List<List<Cell>> cellList, Ship ship, int x, int y) 
+        public bool PlaceShip(Grid grid, List<List<Cell>> cellList, Ship ship, int x, int y)
         {
             var (succeed, errorStatus) = CheckShipRequirements(grid, ref cellList, ref ship, ref x, ref y);
             if (succeed)
@@ -63,11 +63,11 @@ namespace Battleship.Logic.Services
         {
             Cell initialCell = cellList[x][y];
             List<ErrorEnum> errors = new List<ErrorEnum>();
-            if (ship.Size > Grid.Dimensions || 
+            if (ship.Size > grid.Dimensions || 
                 (ship.Orientation == ShipOrientation.West && x - ship.Size < 0) ||
-                (ship.Orientation == ShipOrientation.East && x + ship.Size > Grid.Dimensions) ||
+                (ship.Orientation == ShipOrientation.East && x + ship.Size > grid.Dimensions) ||
                 (ship.Orientation == ShipOrientation.North && y + ship.Size < 0) ||
-                (ship.Orientation == ShipOrientation.South && y + ship.Size > Grid.Dimensions))
+                (ship.Orientation == ShipOrientation.South && y + ship.Size > grid.Dimensions))
             {
                 errors.Add(ErrorEnum.SHIP_EXCEED_LIMITS);
                 return (false, errors);
@@ -120,7 +120,7 @@ namespace Battleship.Logic.Services
 
         public bool PlaceShipFromFrontGrid(Grid playerGrid, Grid frontGrid)
         {
-            if (frontGrid?.cells == null || playerGrid?.cells == null) return false;
+            if (frontGrid?.cells == null || playerGrid?.cells == null && GetShips(frontGrid).Count != 6) return false;
             try
             {
                 if (frontGrid.cells.Count != playerGrid.cells.Count) return false;

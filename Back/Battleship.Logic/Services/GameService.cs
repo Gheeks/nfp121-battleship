@@ -9,12 +9,18 @@ namespace Battleship.Logic.Services
 {
     public class GameService
     {
+        public static GameService _instance { get; private set; } = new GameService();
         public GridService GridService { get; set; }
         public PlayerService PlayerService { get; set; }
         public List<Player> Players { get; set; }
         public Dictionary<Player, Grid> GridsPlayer { get; set; }
 
         public Player PlayerToPlay { get; set; }
+
+        public GameService()
+        {
+            CreateNewGame();
+        }
 
         public GameService CreateNewGame()
         {

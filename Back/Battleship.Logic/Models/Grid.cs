@@ -9,11 +9,11 @@ namespace Battleship.Logic.Models
     public class Grid
     {
         public int Id { get; set; }
-        public static int Dimensions = 8;
-        public List<List<Cell>> cells { get; set; }
+        public int Dimensions { get; set; } = 8;
+        public List<List<Cell>> cells;
         public Player PlayerOwner { get; set; }
 
-        private Grid()
+        public Grid()
         {
 
         }
@@ -28,7 +28,7 @@ namespace Battleship.Logic.Models
             {
                 List<Cell> sublist = new List<Cell>();
                 for (int j = 0; j < Dimensions; j++)
-                {
+                {   
                     sublist.Add(new Cell(i, j));
                 }
                 list.Add(sublist);
@@ -38,7 +38,9 @@ namespace Battleship.Logic.Models
 
         public bool HasShip(List<List<Cell>> cellList, int x, int y)
         {
-            return cellList[x][y].ship != null;
+            if (x > 0 && y > 0 && x < cellList.Count-1 && y < cellList.Count - 1)
+                return cellList[x][y].ship != null;
+            else return false;
         }
         
         public bool CheckIfShipExistOnRange(List<List<Cell>> cellList, Ship ship, int x, int y)

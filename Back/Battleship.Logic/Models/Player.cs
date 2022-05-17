@@ -8,6 +8,7 @@ namespace Battleship.Logic.Models
         public string Name { get; set; }
         public string Mail { get; set; }
         public string Password { get; set; }
+        public bool IsAdmin { get; set; } = false;
 
         public Player(string name, string mail, string password)
         {

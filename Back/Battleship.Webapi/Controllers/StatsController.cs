@@ -18,15 +18,17 @@ namespace Battleship.Webapi.Controllers
         }
 
         [HttpGet("{startNumber:int}")]
-        public List<Stats> All(int startNumber)
+        public List<Stats> All([FromBody] Player player, int startNumber)
         {
-            return _context.Stats.Skip(startNumber).Take(10).ToList();
+            if (player.IsAdmin)
+                return _context.Stats.Skip(startNumber).Take(10).ToList();
+            else throw new UnauthorizedAccessException();
         }
 
         [HttpGet("StatsPlayer/{startNumber:int}")]
         public List<Stats> Get([FromBody] Player player, int startNumber)
         {
-            return _context.Stats.Where(s => s.Player1Id == player.Id).Skip(startNumber).Take(10).ToList();
+            return _context.Stats.Where(s => s.Player1Id.Id == player.Id).Skip(startNumber).Take(10).ToList();
         }
     }
 }

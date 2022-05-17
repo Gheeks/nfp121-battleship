@@ -56,7 +56,8 @@ namespace Battleship.Logic.Tests.Services
         {
             PlayerService playerService = new PlayerService();
             Player p = playerService.CreatePlayer();
-            Assert.IsTrue(playerService.CreateNewUser(p).Name == p.Name && playerService.CreateNewUser(p).Mail == p.Mail && playerService.CreateNewUser(p).Password == p.Password); 
+            Player newPlayer = playerService.CreateNewUser(p);
+            Assert.IsTrue(newPlayer.Name == p.Name && newPlayer.Mail == p.Mail); 
         }
 
     }
