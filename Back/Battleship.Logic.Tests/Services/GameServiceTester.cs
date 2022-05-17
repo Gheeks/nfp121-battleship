@@ -61,9 +61,9 @@ namespace Battleship.Logic.Tests.Services
 
             Assert.IsTrue(tester.GridService.GetShips(tester.GridsPlayer.FirstOrDefault(g => g.Key == tester.Players[0]).Value).Count == 6
                 && tester.GridService.GetShips(tester.GridsPlayer.FirstOrDefault(g => g.Key == tester.Players[1]).Value).Count == 6);
-        }
+        }      
 
-        [TestMethod]
+       [TestMethod]
         public void TestPlayerCanHitBoat()
         {
             GameService tester = CreateArtificalGame();
@@ -87,6 +87,18 @@ namespace Battleship.Logic.Tests.Services
         {
             GameService tester = CreateGameWithTwoPlayersAnd8Grid();
             //tester.GridService.PlaceShip(tester.GridService.gridInstance.cells, new Ship());
+        }
+
+        [TestMethod]
+        public void TestAIShipPlacement()
+        {
+            AIService AITest = new AIService();
+            GameService tester = CreateGameWithTwoPlayersAnd8Grid();
+
+            Grid grid = tester.GetPlayerGrid(tester.Players[1]);
+
+            AITest.AutoShipPlacement(tester, grid);
+            Assert.IsTrue(tester.GridService.GetShips(tester.GetPlayerGrid(tester.Players[1])).Count == 6);
         }
 
         public GameService CreateGameWithTwoPlayersAnd8Grid()
