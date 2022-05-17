@@ -42,7 +42,7 @@ namespace Battleship.Logic.Models
                 return cellList[x][y].ship != null;
             else return false;
         }
-        
+
         public bool CheckIfShipExistOnRange(List<List<Cell>> cellList, Ship ship, int x, int y)
         {
             bool hasChip = true;

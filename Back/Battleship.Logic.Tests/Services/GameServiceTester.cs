@@ -67,7 +67,7 @@ namespace Battleship.Logic.Tests.Services
         public void TestPlayerCanHitBoat()
         {
             GameService tester = CreateArtificalGame();
-            tester.TryHitBoat(tester.Players[1], 0, 0);
+            tester.TryHitBoatWithPlayer(tester.Players[1], 0, 0);
             Assert.AreEqual(GridStatus.Ship_Touched, tester.GetPlayerGrid(tester.Players[1]).GetState(0, 0));
         }
 
@@ -77,7 +77,7 @@ namespace Battleship.Logic.Tests.Services
             GameService tester = CreateArtificalGame();
             //Force
             tester.PlayerToPlay = tester.Players[0];
-            tester.TryHitBoat(tester.Players[1], 7, 7);
+            tester.TryHitBoatWithPlayer(tester.Players[1], 7, 7);
             Assert.IsTrue(tester.GetPlayerGrid(tester.Players[1]).GetState(7, 7) == GridStatus.NoShip_Touched && tester.PlayerToPlay == tester.Players[1]);
         }
 

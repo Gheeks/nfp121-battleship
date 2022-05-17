@@ -83,9 +83,9 @@ namespace Battleship.Logic.Services
             //}
         }
 
-        public bool HitPlayerGrid(Grid g, int difficulty)
+        public Grid HitPlayerGrid(Grid g, int difficulty)
         {
-            return false;
+            return null;
         }
     }
 }

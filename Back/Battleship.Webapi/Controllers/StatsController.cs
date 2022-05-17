@@ -28,7 +28,7 @@ namespace Battleship.Webapi.Controllers
         [HttpGet("StatsPlayer/{startNumber:int}")]
         public List<Stats> Get([FromBody] Player player, int startNumber)
         {
-            return _context.Stats.Where(s => s.Player1Id.Id == player.Id).Skip(startNumber).Take(10).ToList();
+            return _context.Stats.Where(s => s.Player1.Id == player.Id).Skip(startNumber).Take(10).ToList();
         }
     }
 }

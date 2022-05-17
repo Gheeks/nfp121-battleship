@@ -61,7 +61,7 @@ namespace Battleship.Logic.Services
             return GridService.PlaceShipFromFrontGrid(g, grid);
         }
 
-        public bool TryHitBoat(Player playerTarget, int x, int y)
+        public bool TryHitBoatWithPlayer(Player playerTarget, int x, int y)
         {
             Grid g = GetPlayerGrid(playerTarget);
             GridStatus gridStatus = g.GetState(x, y);
@@ -69,6 +69,21 @@ namespace Battleship.Logic.Services
             {
                 GridService.SwitchState(g, x, y);
                 PlayerToPlay = playerTarget;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool TryHitBoatWithGrid(Grid g, int x, int y)
+        {
+            GridStatus gridStatus = g.GetState(x, y);
+            if (gridStatus == GridStatus.NoShip_NotTouched || gridStatus == GridStatus.Ship_NotTouched)
+            {
+                GridService.SwitchState(g, x, y);
+                PlayerToPlay = g.PlayerOwner;
                 return false;
             }
             else

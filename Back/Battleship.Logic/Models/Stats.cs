@@ -9,10 +9,12 @@ namespace Battleship.Logic.Models
     public class Stats
     {
         public int Id { get; set; }
-        public Player Player1Id { get; set; }
-        public Grid Grid1Id { get; set; }
-        public Player? Player2Id { get; set; }
-        public Grid? Grid2Id { get; set; }
+        public Player Player1 { get; set; }
+        public Grid Grid1 { get; set; }
+        public Player? Player2 { get; set; }
+        public Grid? Grid2 { get; set; }
+        public Player? PlayerTurn { get; set; }
+        public Player? PlayerVictory { get; set; }
         public int Difficulty { get; set; }
         public int Player1shots { get; set; }
         public int Player2shots { get; set; }
@@ -31,10 +33,10 @@ namespace Battleship.Logic.Models
 
         public Stats(Player player1id, Grid grid1id, Player player2id, Grid grid2id, int difficulty, int player1shots, int player2shots, DateTime beginDate)
         {
-            Player1Id = player1id;
-            Grid1Id = grid1id;
-            Player2Id = player2id;
-            Grid2Id = grid1id;
+            Player1 = player1id;
+            Grid1 = grid1id;
+            Player2 = player2id;
+            Grid2 = grid1id;
             Difficulty = difficulty;
             Player1shots = player1shots;
             Player2shots = player2shots;
