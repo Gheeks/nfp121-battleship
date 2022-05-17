@@ -1,6 +1,6 @@
-export class User {
+export class Player {
   id!: String;
   name!: String;
-  email!: String;
+  mail!: String;
   password!: String;
 }

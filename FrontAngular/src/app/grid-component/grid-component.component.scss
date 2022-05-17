@@ -1,0 +1,39 @@
+.battlefield-cell {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  cursor: pointer;
+}
+
+.battlefield-cell-empty {
+  background-color: navy;
+}
+
+.battlefield-cell-damaged {
+  background-color: firebrick;
+}
+
+.battlefield-cell-ship {
+  background-color: cadetblue;
+}
+
+.battlefield-cell-preship {
+  background-color: #bfd8d9;
+}
+
+.battlefield-cell-miss {
+  background-color: #4c4ca6;
+}
+
+.table-bordered {
+  table-layout: auto;
+}
+
+.table-bordered>:not(caption)>* {
+  border-width: 1px !important;
+}
+
+.grids {
+  margin-top: 10%;
+}

@@ -7,18 +7,21 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/struct/footer/footer.component';
-import { HeaderComponent } from './components/struct/header/header.component';
 import { GridComponentComponent } from './grid-component/grid-component.component';
 import { AccountComponent } from './account/account.component';
 import { RegisterComponent } from './account/register/register.component';
 import { LoginComponent } from './account/login/login.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { StatsGridComponent } from './components/stats-grid/stats-grid.component';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
     GridComponentComponent,
     AccountComponent,
@@ -34,6 +37,13 @@ import { StatsGridComponent } from './components/stats-grid/stats-grid.component
     AppRoutingModule,
     ReactiveFormsModule,
     RouterModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:7216"],
+        disallowedRoutes: []
+      }
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

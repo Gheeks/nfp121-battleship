@@ -26,26 +26,7 @@ export class StatsGridComponent implements OnInit {
       sortable: false,
       suppressMenu: true,
     },
-    { headerName: 'Athlete', field: 'athlete', suppressMenu: true },
-    {
-      field: 'age',
-      filter: 'agNumberColumnFilter',
-    },
-    {
-      field: 'country',
-      filter: 'agSetColumnFilter',
-    },
-    {
-      field: 'year',
-      filter: 'agSetColumnFilter',
-      filterParams: { values: ['2000', '2004', '2008', '2012'] },
-    },
-    { field: 'date' },
-    { field: 'sport', suppressMenu: true },
-    { field: 'gold', suppressMenu: true },
-    { field: 'silver', suppressMenu: true },
-    { field: 'bronze', suppressMenu: true },
-    { field: 'total', suppressMenu: true },
+    { headerName: 'Athlete', field: 'athlete'},
   ];
 
   public rowModelType = 'infinite';

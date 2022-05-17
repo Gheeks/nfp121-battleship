@@ -1,3 +1,27 @@
-<header></header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Battleship</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarNav" *ngIf="isUserAuthenticated()">
+        <a class="nav-link text-white" href="/grid">New Game</a>
+        <a class="nav-link text-white" href="/account">My History</a>
+        <a class="nav-link text-white" href="/allgames">All History</a>
+      </div>
+    <div class="form-inline my-2 my-lg-0" *ngIf="!isUserAuthenticated()">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <a class="nav-link" href="/register">Register</a>
+        <a class="nav-link" href="/login">Login</a>
+      </div>
+    </div>
+    <div class="form-inline my-2 my-lg-0" *ngIf="isUserAuthenticated()">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <a class="text-white">Welcome {{ getUserName() }}</a>
+        <a class="nav-link" href="/logout" (click)="authService.logoutUser()">Logout</a>
+      </div>
+    </div>
+  </div>
+</nav>
 <router-outlet></router-outlet>
 <footer></footer>

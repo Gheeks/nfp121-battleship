@@ -56,14 +56,7 @@ namespace Battleship.Logic.Services
 
         public bool IsPasswordCorrect(string password) 
         {
-            if (password.Length > 7 && password.Any(char.IsUpper) && password.Any(char.IsNumber) && password.Any(ch => !char.IsLetterOrDigit(ch)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return password.Length > 7 && password.Any(char.IsUpper) && password.Any(char.IsNumber) && password.Any(ch => !char.IsLetterOrDigit(ch));
         }
 
         public bool IsEmailIsReal(string mail) 

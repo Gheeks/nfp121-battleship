@@ -18,6 +18,7 @@
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
+    "@auth0/angular-jwt": "^5.0.2",
     "ag-grid-angular": "^27.2.1",
     "ag-grid-community": "^27.2.1",
     "bootstrap": "^5.1.3",
