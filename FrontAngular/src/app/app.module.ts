@@ -16,7 +16,7 @@ import { StatsGridComponent } from './components/stats-grid/stats-grid.component
 import { JwtModule } from '@auth0/angular-jwt';
 
 export function tokenGetter() {
-  return localStorage.getItem("jwt");
+  return localStorage.getItem('jwt');
 }
 
 @NgModule({
@@ -27,7 +27,7 @@ export function tokenGetter() {
     AccountComponent,
     RegisterComponent,
     StatsGridComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     HttpClientModule,
@@ -40,12 +40,12 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:7216"],
-        disallowedRoutes: []
-      }
+        allowedDomains: ['localhost:7216'],
+        disallowedRoutes: [],
+      },
     }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,11 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ColDef, GetRowIdFunc, GetRowIdParams, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, IDatasource, IGetRowsParams, SortModelItem } from 'ag-grid-community';
+import {
+  ColDef,
+  GetRowIdFunc,
+  GetRowIdParams,
+  GridApi,
+  GridOptions,
+  GridReadyEvent,
+  ICellRendererParams,
+  IDatasource,
+  IGetRowsParams,
+  SortModelItem,
+} from 'ag-grid-community';
 
 @Component({
   selector: 'stats-grid',
   templateUrl: './stats-grid.component.html',
-  styleUrls: ['./stats-grid.component.sass']
+  styleUrls: ['./stats-grid.component.sass'],
 })
 export class StatsGridComponent implements OnInit {
   public columnDefs: ColDef[] = [
@@ -26,7 +37,7 @@ export class StatsGridComponent implements OnInit {
       sortable: false,
       suppressMenu: true,
     },
-    { headerName: 'Athlete', field: 'athlete'},
+    { headerName: 'Athlete', field: 'athlete' },
   ];
 
   public rowModelType = 'infinite';
@@ -54,10 +65,7 @@ export class StatsGridComponent implements OnInit {
 
             setTimeout(function () {
               // take a slice of the total rows
-              const rowsThisPage = data.slice(
-                params.startRow,
-                params.endRow
-              );
+              const rowsThisPage = data.slice(params.startRow, params.endRow);
               // if on or after the last page, work out the last row.
               let lastRow = -1;
               if (data.length <= params.endRow) {
