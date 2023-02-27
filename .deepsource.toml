@@ -1,7 +1,16 @@
 version = 1
 
 [[analyzers]]
+name = "test-coverage"
+
+[[analyzers]]
 name = "javascript"
 
   [analyzers.meta]
   plugins = ["angular"]
+
+[[transformers]]
+name = "prettier"
+
+[[transformers]]
+name = "standardjs"
