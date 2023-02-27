@@ -6,25 +6,27 @@ import { AuthService } from './common/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   public authService: AuthService;
   title = 'Battleship';
-  constructor(private jwtHelper: JwtHelperService, private _authService: AuthService) {
+  constructor(
+    private jwtHelper: JwtHelperService,
+    private _authService: AuthService
+  ) {
     this.authService = _authService;
   }
 
-
   isUserAuthenticated = (): boolean => {
-    const token = localStorage.getItem("jwt");
-    if (token && !this.jwtHelper.isTokenExpired(token)){
+    const token = localStorage.getItem('jwt');
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
       return true;
     }
     return false;
-  }
+  };
 
   getUserName = (): string => {
-    return this.authService.parseJwt(localStorage.getItem("jwt")).name;
-  }
+    return this.authService.parseJwt(localStorage.getItem('jwt')).name;
+  };
 }
