@@ -9,11 +9,11 @@ import { GridComponentComponent } from './grid-component/grid-component.componen
 const routes: Routes = [
   { path: 'grid', component: GridComponentComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

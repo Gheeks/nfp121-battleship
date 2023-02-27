@@ -1,24 +1,56 @@
 <div class="col-md-6 offset-md-3 mt-5">
-  <div class="rounded-0 alert alert-danger" [innerHTML]="errorFormMessage" role="alert" *ngIf="errorOnForm"></div>
+  <div
+    class="rounded-0 alert alert-danger"
+    [innerHTML]="errorFormMessage"
+    role="alert"
+    *ngIf="errorOnForm"
+  ></div>
   Register
   <div class="card">
-      <div class="card-body">
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="card-body">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <label for="name" class="form-label">Name (*): </label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          class="form-control"
+          required
+        />
 
-          <label for="name" class="form-label">Name (*): </label>
-          <input id="name" type="text" formControlName="name" class="form-control" required>
+        <label for="password" class="form-label">Password (*): </label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="form-control"
+          required
+        />
 
-          <label for="password" class="form-label">Password (*): </label>
-          <input id="password" type="password" formControlName="password"  class="form-control" required>
+        <label for="confirmPassword" class="form-label"
+          >Confirm Password (*):
+        </label>
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          class="form-control"
+          required
+        />
 
-          <label for="confirmPassword" class="form-label">Confirm Password (*): </label>
-          <input id="confirmPassword" type="password" formControlName="confirmPassword"  class="form-control" required>
+        <label for="email" class="form-label">Mail (*): </label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="form-control"
+          required
+        />
 
-          <label for="email" class="form-label">Mail (*): </label>
-          <input id="email" type="email" formControlName="email"  class="form-control" required>
-
-          <button type="submit" class="btn btn-primary rounded-0 mt-2" >Register</button>
-        </form>
-      </div>
+        <button type="submit" class="btn btn-primary rounded-0 mt-2">
+          Register
+        </button>
+      </form>
+    </div>
   </div>
 </div>
