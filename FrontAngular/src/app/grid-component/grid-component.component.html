@@ -11,50 +11,159 @@
   </tr>
 </table> -->
 
-
 <div class="container mt-4">
   <h2 class="text-center">Place your boats</h2>
-  <div class="row justify-content-md-center mt-4">
-  </div>
+  <div class="row justify-content-md-center mt-4"></div>
 
   <div class="row mt-4">
     <div class="col col-lg-2">
-      <div class="btn-group-vertical mt-4" role="group" aria-label="Basic radio toggle button group" *ngIf="!placementEnd">
-        <input type="radio" class="btn-check" name="btnShip" id="btnTorpedo" autocomplete="off" checked *ngIf="!torpedoOnGrid">
-        <label class="btn btn-outline-primary btn-sm rounded-0" for="btnTorpedo" *ngIf="!torpedoOnGrid">Torpedo</label>
+      <div
+        class="btn-group-vertical mt-4"
+        role="group"
+        aria-label="Basic radio toggle button group"
+        *ngIf="!placementEnd"
+      >
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnShip"
+          id="btnTorpedo"
+          autocomplete="off"
+          checked
+          *ngIf="!torpedoOnGrid"
+        />
+        <label
+          class="btn btn-outline-primary btn-sm rounded-0"
+          for="btnTorpedo"
+          *ngIf="!torpedoOnGrid"
+          >Torpedo</label
+        >
 
-        <input type="radio" class="btn-check" name="btnShip" id="btnDestroyer1" autocomplete="off" *ngIf="!destroyer1OnGrid">
-        <label class="btn btn-outline-primary btn-sm rounded-0" for="btnDestroyer1" *ngIf="!destroyer1OnGrid">Destroyer</label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnShip"
+          id="btnDestroyer1"
+          autocomplete="off"
+          *ngIf="!destroyer1OnGrid"
+        />
+        <label
+          class="btn btn-outline-primary btn-sm rounded-0"
+          for="btnDestroyer1"
+          *ngIf="!destroyer1OnGrid"
+          >Destroyer</label
+        >
 
-        <input type="radio" class="btn-check" name="btnShip" id="btnDestroyer2" autocomplete="off" *ngIf="!destroyer2OnGrid">
-        <label class="btn btn-outline-primary btn-sm rounded-0" for="btnDestroyer2" *ngIf="!destroyer2OnGrid">Destroyer</label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnShip"
+          id="btnDestroyer2"
+          autocomplete="off"
+          *ngIf="!destroyer2OnGrid"
+        />
+        <label
+          class="btn btn-outline-primary btn-sm rounded-0"
+          for="btnDestroyer2"
+          *ngIf="!destroyer2OnGrid"
+          >Destroyer</label
+        >
 
-        <input type="radio" class="btn-check" name="btnShip" id="btnCruiser1" autocomplete="off" *ngIf="!cruiser1OnGrid">
-        <label class="btn btn-outline-primary btn-sm rounded-0" for="btnCruiser1" *ngIf="!cruiser1OnGrid">Cruiser</label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnShip"
+          id="btnCruiser1"
+          autocomplete="off"
+          *ngIf="!cruiser1OnGrid"
+        />
+        <label
+          class="btn btn-outline-primary btn-sm rounded-0"
+          for="btnCruiser1"
+          *ngIf="!cruiser1OnGrid"
+          >Cruiser</label
+        >
 
-        <input type="radio" class="btn-check" name="btnShip" id="btnCruiser2" autocomplete="off" *ngIf="!cruiser2OnGrid">
-        <label class="btn btn-outline-primary btn-sm rounded-0" for="btnCruiser2" *ngIf="!cruiser2OnGrid">Cruiser</label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnShip"
+          id="btnCruiser2"
+          autocomplete="off"
+          *ngIf="!cruiser2OnGrid"
+        />
+        <label
+          class="btn btn-outline-primary btn-sm rounded-0"
+          for="btnCruiser2"
+          *ngIf="!cruiser2OnGrid"
+          >Cruiser</label
+        >
 
-        <input type="radio" class="btn-check" name="btnShip" id="btnAircraft" autocomplete="off" *ngIf="!aircraftOnGrid">
-        <label class="btn btn-outline-primary btn-sm rounded-0" for="btnAircraft" *ngIf="!aircraftOnGrid">AircraftCarrier</label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnShip"
+          id="btnAircraft"
+          autocomplete="off"
+          *ngIf="!aircraftOnGrid"
+        />
+        <label
+          class="btn btn-outline-primary btn-sm rounded-0"
+          for="btnAircraft"
+          *ngIf="!aircraftOnGrid"
+          >AircraftCarrier</label
+        >
       </div>
 
-      <div class="btn-group-vertical ml-4 mt-4" role="group" aria-label="Basic radio toggle button group" *ngIf="!placementEnd">
-        <input type="radio" class="btn-check" name="btnradio" id="horizontal" autocomplete="off" checked>
-        <label class="btn btn-outline-primary btn-sm rounded-0" for="horizontal">Horizontal</label>
+      <div
+        class="btn-group-vertical ml-4 mt-4"
+        role="group"
+        aria-label="Basic radio toggle button group"
+        *ngIf="!placementEnd"
+      >
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="horizontal"
+          autocomplete="off"
+          checked
+        />
+        <label class="btn btn-outline-primary btn-sm rounded-0" for="horizontal"
+          >Horizontal</label
+        >
 
-        <input type="radio" class="btn-check" name="btnradio" id="vertical" autocomplete="off">
-        <label class="btn btn-outline-primary btn-sm rounded-0" for="vertical">Vertical</label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="vertical"
+          autocomplete="off"
+        />
+        <label class="btn btn-outline-primary btn-sm rounded-0" for="vertical"
+          >Vertical</label
+        >
 
-        <input type="radio" class="btn-check" name="btnradio" id="diagonal" autocomplete="off">
-        <label class="btn btn-outline-primary btn-sm rounded-0" for="diagonal">Diagonal</label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="diagonal"
+          autocomplete="off"
+        />
+        <label class="btn btn-outline-primary btn-sm rounded-0" for="diagonal"
+          >Diagonal</label
+        >
       </div>
     </div>
     <div class="col col-lg-4 mt-n4">
       You
-      <table class="table-bordered ">
-        <tr *ngFor="let i of [0,1,2,3,4,5,6,7]" class="grids">
-          <td class="battlefield-cell" *ngFor="let i of [0,1,2,3,4,5,6,7]"></td>
+      <table class="table-bordered">
+        <tr *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7]" class="grids">
+          <td
+            class="battlefield-cell"
+            *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7]"
+          ></td>
         </tr>
       </table>
     </div>
@@ -63,9 +172,12 @@
 
     <div class="col col-md-4">
       Player
-      <table class="table-bordered ">
-        <tr *ngFor="let i of [0,1,2,3,4,5,6,7]" class="grids">
-          <td class="battlefield-cell" *ngFor="let i of [0,1,2,3,4,5,6,7]"></td>
+      <table class="table-bordered">
+        <tr *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7]" class="grids">
+          <td
+            class="battlefield-cell"
+            *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7]"
+          ></td>
         </tr>
       </table>
     </div>
